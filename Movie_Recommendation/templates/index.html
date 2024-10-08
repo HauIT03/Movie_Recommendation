@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Gợi Ý Phim</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/scripts.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Hệ Thống Gợi Ý Phim</h1>
+
+        {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        <form id="recommendationForm">
+            <label for="user_id">User ID (tùy chọn):</label>
+            <input type="number" name="user_id" id="user_id" min="1" max="610">
+            <span class="error-message" id="user_id_error"></span> <!-- Thông báo lỗi cho User ID -->
+
+            <label for="tag">Tag (tùy chọn):</label>
+            <input type="text" name="tag" id="tag">
+
+            <label for="genre">Thể loại (tùy chọn):</label>
+            <input type="text" name="genre" id="genre">
+
+            <label for="title">Tiêu đề (tùy chọn):</label>
+            <input type="text" name="title" id="title" autocomplete="off">
+            <div id="suggestions" class="suggestion-box"></div> <!-- Div để hiển thị gợi ý -->
+
+            <label for="rating">Gợi ý theo Rating (tùy chọn):</label>
+            <input type="checkbox" name="rating" id="rating">
+
+            <label for="top_n">Số lượng gợi ý (1-9742):</label>
+            <input type="number" name="top_n" id="top_n" min="1" max="9742" value="">
+            <span class="error-message" id="top_n_error"></span> <!-- Thông báo lỗi cho số lượng gợi ý -->
+
+            <button type="button" id="getRecommendationsBtn">Lấy Gợi Ý</button>
+        </form>
+
+        <div id="recommendationList"></div>
+    </div>
+</body>
+</html>
